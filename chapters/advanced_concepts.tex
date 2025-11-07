@@ -1,0 +1,73 @@
+\section{Advanced Concepts and Future Directions}
+\subsection{Computational Complexity of Philippine Languages}
+\begin{frame}{Languages and Decision Problems}
+    \textbf{Decision Problem (DP):} A yes/no question
+
+    \vspace{5mm}
+
+    Every formal language $\mathcal{L}$ defines a decision problem:
+    \[
+        \text{Given } s \in \Sigma^* \text{ and } \mathcal{L} \subseteq \Sigma^*, \quad \text{is } s \in \mathcal{L}\text{?}
+    \]
+    
+    \vspace{3mm}
+    
+    This is the \textbf{membership query}.
+\end{frame}
+
+\begin{frame}{Complexity Classes}
+    \textbf{Complexity Classes} categorize problems by computational resources needed.
+
+    \vspace{5mm}
+
+    Classes of interest:
+    \begin{itemize}
+        \item \textbf{P} (Polynomial Time) --- Solvable in polynomial time
+        \item \textbf{PSPACE} (Polynomial Space) --- Solvable with polynomial memory
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Language Complexity}
+    \textbf{Time complexity by language class:}
+    \begin{itemize}
+        \item \textbf{Regular} --- $\mathcal{O}(n)$ (subset of \textbf{P})
+        \item \textbf{Context-Free} --- $\mathcal{O}(n^m)$ (subset of \textbf{P})
+        \item \textbf{Context-Sensitive} --- \textbf{PSPACE}
+        \item \textbf{Recursively Enumerable} --- Unbounded
+    \end{itemize}
+
+    \vspace{5mm}
+
+    \textbf{Key Takeaway:} Higher in the hierarchy = more expressive, more expensive to process
+\end{frame}
+
+\subsection{Tagalog Parsing is Intractable}
+\begin{frame}{Intractability}
+    This work shows that Tagalog is \emph{at least} context-sensitive due to the existence of the HA rule.
+    
+    \vspace{5mm}
+
+    Proving wether Tagalog (or any language in general) is (midly) context-sensitive is an open problem.
+
+    \vspace{5mm}
+    
+    Hence, parsing Tagalog is an intractable problem leaving room for approximation techniques~\footnote{
+        See~\cite{Senuma_Aizawa_2024, branco-2018-computational}
+    }.
+\end{frame}
+
+\subsection{Grammar Induction}
+\begin{frame}{Grammar Induction}
+    There are a lot of rules in Tagalog grammar that are not yet formalized. This work only covers a subset of the grammar.
+    \vspace{5mm}
+    We may formalize it manually, but this is time-consuming and labor-intensive.
+    \vspace{5mm}
+    \textbf{Grammar Induction} is the task of learning grammar rules from a corpora (you can use the Bible corpus you got for the first project!)~\footnote{
+        See~\cite{ANGLUIN198787,ZHAO2025104306, Weiss_Goldberg_Yahav_2022}.
+    }.
+\end{frame}
+
+
+\begin{frame}
+    \textbf{General reference: }~\cite{Gorman_Sproat_2021,KWF,OOP,Malabonga_2009,bikol_dictionary}.
+\end{frame}

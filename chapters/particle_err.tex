@@ -1,0 +1,112 @@
+\subsection{Particle Errors \emph{with some persuasion} is Regular}\label{sec:particle_err}
+
+\begin{frame}{Enclitic Particles in Tagalog}
+    \textbf{Enclitic Particles (EP)} add meaning to preceding words.
+
+    \vspace{3mm}
+
+    \textbf{Examples:}
+    \begin{itemize}
+        \item ``rin'' / ``din'' --- inclusion (``too'', ``also'')
+        \item ``raw'' / ``daw'' --- reported speech (``supposedly'')
+    \end{itemize}
+
+    \vspace{5mm}
+
+    \textbf{Morphophonemic Rule:}
+    \begin{itemize}
+        \item Use \textbf{r-form} if preceding word ends in vowel (patinig)
+        \item Use \textbf{d-form} if preceding word ends in consonant (katinig)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Examples: Reported Speech}
+    \textbf{Correct usage:}
+
+    \vspace{3mm}
+
+    \begin{enumerate}
+        \item Marami \textbf{raw} --- ends in vowel \emph{i}
+        \item Humingi \textbf{raw} --- ends in vowel \emph{i}
+        \item Sinapak \textbf{daw} --- ends in consonant \emph{k}
+        \item Natulog \textbf{daw} --- ends in consonant \emph{g}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Can We Use Feature Tagging?}
+    Reported speech EPs can follow multiple parts of speech:
+    \begin{itemize}
+        \item Nouns ($\mathbb{NOUN}$)
+        \item Verbs ($\mathbb{VERB}$)
+        \item Adjectives ($\mathbb{ADJ}$)
+        \item Adverbs ($\mathbb{ADV}$)
+    \end{itemize}
+
+    \vspace{5mm}
+
+    \textbf{Yes!} Similar to~\cref{sec:spelling_err}, we can construct a regular grammar with feature tagging.
+\end{frame}
+
+\begin{frame}{Regular Grammar with Feature Tagging}
+    \footnotesize
+    \begin{align*}
+        S               & \to \mathbb{NOUN}_p\,\text{raw}
+        \;\mid\; \mathbb{NOUN}_k\,\text{daw}                                 \\
+                        & \quad\mid\; \mathbb{VERB}_p\,\text{raw}
+        \;\mid\; \mathbb{VERB}_k\,\text{daw}                                 \\
+                        & \quad\mid\; \mathbb{ADJ}_p\,\text{raw}
+        \;\mid\; \mathbb{ADJ}_k\,\text{daw}                                  \\
+                        & \quad\mid\; \mathbb{ADV}_p\,\text{raw}
+        \;\mid\; \mathbb{ADV}_k\,\text{daw}                                  \\
+        \mathbb{NOUN}_p & \to \text{Lola} \mid \ldots                        \\
+        \mathbb{NOUN}_k & \to \text{Juan} \mid \text{Bert} \mid \ldots       \\
+        \mathbb{VERB}_p & \to \text{Humingi} \mid \text{Umiiyak} \mid \ldots \\
+        \mathbb{VERB}_k & \to \text{Kumain} \mid \text{Sumigaw} \mid \ldots  \\
+        \mathbb{ADJ}_p  & \to \text{Masaya} \mid \text{Maganda} \mid \ldots  \\
+        \mathbb{ADJ}_k  & \to \text{Matulin} \mid \text{Mabilis} \mid \ldots \\
+        \mathbb{ADV}_p  & \to \text{Ngayon} \mid \text{Dati} \mid \ldots     \\
+        \mathbb{ADV}_k  & \to \text{Noon} \mid \text{Hapon} \mid \ldots
+    \end{align*}
+\end{frame}
+
+\begin{frame}{The Problem: Combinatorial Explosion}
+    \textbf{Issue:} Feature tagging creates production explosion!
+
+    \vspace{5mm}
+
+    For $n$ POS tags, each needing vowel/consonant split:
+    \[
+        \text{Total productions} = 2n + 1
+    \]
+
+    \vspace{5mm}
+
+    \textbf{Consequence:}
+    \begin{itemize}
+        \item Grammar becomes unwieldy
+        \item Difficult to maintain
+        \item Defeats the purpose of ``easy to comprehend''
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{So\dots Is It Regular?}
+    \textbf{Theoretically:} Yes! Morphophonemic alternation \emph{is} regular.
+
+    \vspace{5mm}
+
+    \textbf{Pragmatically:} Not really!
+
+    \vspace{5mm}
+
+    \textbf{The rule-based philosophy:}
+    \begin{itemize}
+        \item Leverage human comprehensibility
+        \item Keep grammars maintainable
+        \item Avoid spatial/practical inefficiency
+    \end{itemize}
+
+    \vspace{3mm}
+
+    A spatially inefficient rule-based approach is a (essentially)
+    \textbf{useless}.
+\end{frame}
