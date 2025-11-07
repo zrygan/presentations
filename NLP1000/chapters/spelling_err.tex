@@ -1,0 +1,100 @@
+\section{Some rules are regular}
+\subsection{Spelling Errors are Mostly Regular}\label{sec:spelling_err}
+
+\begin{frame}{Object-Focused Future Tense in Bikol}
+    \textbf{Object-Focused Future Tense (OFFT)} verbs in Bikol add suffixes to base verbs.
+    
+    \vspace{3mm}
+    
+    \textbf{Rule:} Future tense verb with suffix determined by base verb ending:
+    \begin{itemize}
+        \item Ends with \textbf{katinig} (consonant) $\Rightarrow$ suffix ``-on''
+        \item Ends with \textbf{patinig} (vowel) $\Rightarrow$ suffix ``-hon''
+    \end{itemize}
+
+    \vspace{5mm}
+
+    \textbf{Examples:}
+    \begin{itemize}
+        \item Gigibo\textbf{hon} (to give) --- \emph{gibo} ends in vowel
+        \item Apod\textbf{on} (to clean) --- \emph{apod} ends in consonant
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Naive Regular Grammar}
+    Let $\mathbb{VERB}$ = set of all valid Bikol verbs.
+
+    \vspace{3mm}
+
+    \textbf{Attempt 1:} Simple regular grammar
+    \begin{align*}
+        S          & \to \mathbb{VERB} \; \text{hon} \mid  \mathbb{VERB} \; \text{on} \\
+        \mathbb{VERB} & \to \text{gibo} \mid \text{apod} \mid \ldots
+    \end{align*}
+
+    \vspace{5mm}
+
+    \textbf{Problem:} This doesn't account for verb endings!
+    
+    \vspace{2mm}
+    
+    It would incorrectly accept ``giboon'' and ``apodhon''
+\end{frame}
+
+\begin{frame}{Feature Tagging to the Rescue}
+    \textbf{Solution:} Partition verbs by their ending
+    
+    \vspace{3mm}
+    
+    \begin{itemize}
+        \item $\mathbb{VERB}_p$ --- verbs ending in \textbf{p}atinig (vowel)
+        \item $\mathbb{VERB}_k$ --- verbs ending in \textbf{k}atinig (consonant)
+    \end{itemize}
+    
+    \vspace{3mm}
+    
+    Properties:
+    \begin{itemize}
+        \item $\mathbb{VERB}_p \cap \mathbb{VERB}_k = \emptyset$ (disjoint)
+        \item $\mathbb{VERB}_p \cup \mathbb{VERB}_k = \mathbb{VERB}$ (complete)
+    \end{itemize}
+
+    \vspace{3mm}
+
+    This technique is called \textbf{feature tagging}!
+\end{frame}
+
+\begin{frame}{Corrected Regular Grammar}
+    \textbf{With feature tagging:}
+    \begin{align*}
+        S              & \to \mathbb{VERB}_p \; \text{hon} \mid \mathbb{VERB}_k \; \text{on} \\
+        \mathbb{VERB}_p & \to \text{gibo} \mid \ldots                                          \\
+        \mathbb{VERB}_k & \to \text{apod} \mid \ldots
+    \end{align*}
+
+    \textbf{Result:}
+    \begin{itemize}
+        \item Produces \emph{only} valid OFFT verbs
+        \item Verification in $\mathcal{O}(n)$ time~\footnote{See~\cite{Thompson1968} for $\mathcal{O}(n)$ regex matching; also RE2 by Russ Cox et al.\ at Google: \url{https://github.com/google/re2}}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{When Regularity Works}
+    \textbf{Key insight:} We can \emph{coerce} regularity through:
+    \begin{itemize}
+        \item Feature tagging
+        \item Inflating the symbol space
+    \end{itemize}
+
+    \vspace{5mm}
+
+    \textbf{This works here because:}
+    \begin{itemize}
+        \item Only one non-terminal needs splitting
+        \item The split is binary (vowel vs.\ consonant)
+    \end{itemize}
+    
+    \vspace{3mm}
+    
+    But what happens when things get more complex?
+\end{frame}
